@@ -24,15 +24,46 @@ const products = [
 
 describe('CartController', () => {
   beforeEach(async () => {
-    Product.destroy({});
-    Product.createEach(products);
+    await Product.destroy({});
+    await Product.createEach(products);
   });
 
   describe('#Purchase', () => {
     it('Purchase a single product in stock', async () => {
-      const result = supertest(sails.hooks.http.app).post('/cart/purchase');
+      // Fixtures
+      const cart = {
+        cart: [
+          {
+            sku: '123',
+            quantity: 4
+          }
+        ]
+      };
 
-      assert.fail();
+      // Expected Result
+      const expectedResult = {
+        success: true,
+        totalPrice: 182,
+        purchased: [
+          {
+            sku: '123',
+            quantity: 4
+          }
+        ],
+        missingItems: []
+      };
+
+      // Run test
+      const result = await await supertest(sails.hooks.http.app).post('/cart/purchase').send(cart);
+
+      // Assert Results
+      assert.deepEqual(result.body, expectedResult);
+
+      let productStock = await Product.findOne({sku: '123'});
+      assert.equal(productStock.quantity, 6);
+    });
+
+
     });
   });
 });
