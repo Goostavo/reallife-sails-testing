@@ -21,7 +21,7 @@
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development nodemon app.js",
-    "test": "PORT=9998 NODE_ENV=test nyc --reporter=lcov --reporter=text-summary _mocha --timeout 5000 -R spec -b --recursive --exit",
+    "test": "PORT=9998 NODE_ENV=test nyc _mocha --timeout 5000 -R spec -b --recursive --exit",
     "lint": "eslint ./api --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
   },
   "main": "app.js",
