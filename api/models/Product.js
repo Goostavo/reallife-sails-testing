@@ -26,6 +26,11 @@ module.exports = {
       description: 'Stock quantity available for purchase',
       type: 'number',
       defaultsTo: 0
+    },
+    price: {
+      description: 'Product price',
+      type: 'number',
+      required: true
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
