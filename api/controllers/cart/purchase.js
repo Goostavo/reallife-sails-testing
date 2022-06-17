@@ -34,7 +34,10 @@ module.exports = {
           success: false,
           totalPrice: 0,
           purchased: [],
-          missingItems: [item.sku]
+          missingItems: [{
+            sku: item.sku,
+            quantity: item.quantity
+          }]
         };
       }
 

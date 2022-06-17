@@ -63,7 +63,35 @@ describe('CartController', () => {
       assert.equal(productStock.quantity, 6);
     });
 
+    it('Purchase a single out of stock product', async () => {
+      // Fixtures
+      const cart = {
+        cart: [
+          {
+            sku: '224',
+            quantity: 1
+          }
+        ]
+      };
 
+      // Expected Result
+      const expectedResult = {
+        success: false,
+        totalPrice: 0,
+        purchased: [],
+        missingItems: [
+          {
+            sku: '224',
+            quantity: 1
+          }
+        ]
+      };
+
+      // Run test
+      const result = await await supertest(sails.hooks.http.app).post('/cart/purchase').send(cart);
+
+      // Assert Results
+      assert.deepEqual(result.body, expectedResult);
     });
   });
 });
