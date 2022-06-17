@@ -16,7 +16,8 @@
     "eslint": "5.16.0",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.16",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "supertest": "^6.2.3"
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
